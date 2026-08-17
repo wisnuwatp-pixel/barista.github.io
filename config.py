@@ -110,43 +110,7 @@ def init_db():
         """
         )
 
-        # ---------------------------------------------------------
-        # 📦 เติมข้อมูลเริ่มต้น (Seed Data) หากตารางยังว่างอยู่
-        # ---------------------------------------------------------
-        cur.execute("SELECT COUNT(*) FROM category")
-        if cur.fetchone()[0] == 0:
-            # 1. หมวดหมู่ตัวอย่าง
-            sample_categories = [
-                ("CAT-001", "กาแฟ (Coffee)", "วัตถุดิบ"),
-            ]
-            cur.executemany(
-                "INSERT INTO category (category_id, category_name, type) VALUES (?, ?, ?)",
-                sample_categories,
-            )
-
-            # 2. วัตถุดิบตัวอย่าง
-            sample_ingredients = [
-                (
-                    "ING-001","CAT-001","เมล็ดกาแฟปางขอน","g",0.45,1000.0,200.0,"",
-                ),
-            ]
-            cur.executemany(
-                """
-                INSERT INTO ingredient 
-                (ingredient_id, category_id, ingredient_name, stock_unit, cost_perunit, current_stock, min_stock, img_url)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-                sample_ingredients,
-            )
-
-            # 3. ตัวอย่างสูตรผสมย่อย (นมผสม)
-            sample_mixes = [
-                ("MIX-ING-001", "ING-002", 500.0, "ml"),  # นมสด 500 ml
-            ]
-            cur.executemany(
-                "INSERT INTO recipe_items (parent_id, child_id, quantity, unit) VALUES (?, ?, ?, ?)",
-                sample_mixes,
-            )
+    
 
         conn.commit()
 
