@@ -105,7 +105,7 @@ menu_items = [
 # สร้าง UI เมนูที่ Sidebar
 
 with st.sidebar:
-    st.header("POS & Inventory")
+    st.header("POS & Inventory V.1")
     st.subheader("📌 เมนูการทำงาน")
 
     # วนลูปสร้างปุ่มเมนูตามรายการใน menu_items
