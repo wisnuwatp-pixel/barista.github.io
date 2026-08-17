@@ -1,0 +1,193 @@
+CSS
+/* =========================================================
+   1. GOOGLE FONTS & GLOBAL RESET
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap');
+
+/* 📍 กำหนดฟอนต์ Prompt เฉพาะข้อความทั่วไป (ไม่กระทบไอคอน) */
+html, body, p, span, div, input, select, textarea, button, label, h1, h2, h3, h4 {
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 📍 ดักคืนค่าไอคอน Streamlit ทุกชนิดให้กลับเป็นไอคอน */
+[data-testid="stIcon"],
+[data-testid="stExpanderToggleIcon"],
+[aria-hidden="true"],
+i, svg {
+    font-family: 'Material Symbols Rounded', 'Material Symbols Outlined', 'Material Icons', sans-serif !important;
+}
+
+/* =========================================================
+   2. HEADERS & SUBHEADERS (จัดระเบียบหัวข้อ)
+   ========================================================= */
+/* st.title (h1) */
+h1 {
+    font-weight: 600 !important;
+    font-size: 1.8rem !important;
+    color: #f8fafc !important;
+    margin-bottom: 1rem !important;
+}
+
+/* st.header (h2) & st.subheader (h3) */
+[data-testid="stHeader"],
+h2, h2 * {
+    font-size: 1.3rem !important;  /* ปรับขนาดตามต้องการ */
+    font-weight: 600 !important;
+}
+
+/* st.subheader (h3) - หัวข้อย่อย */
+[data-testid="stSubheader"],
+h3, h3 * {
+    font-size: 1.0rem !important;  /* ปรับขนาดตามต้องการ (เช่น 1.0rem หรือ 15px) */
+    font-weight: 500 !important;
+}
+
+/* Custom Subheader Class สำหรับใช้ร่วมกับ st.markdown */
+.custom-header {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.custom-subtitle {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+/* =========================================================
+   3. CONTAINERS & CARDS (กรอบและกล่องข้อมูล)
+   ========================================================= */
+/* st.container(border=True) */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: 12px !important;
+    border: 1px solid #334155 !important;
+    background-color: #b6c7f0 !important;
+    padding: 1rem !important;
+    transition: border-color 0.2s ease-in-out;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    border-color: #475569 !important;
+}
+
+/* st.expander */
+div[data-testid="stExpander"] {
+    border-radius: 12px !important;
+    border: 1px solid #334155 !important;
+    background-color: #bfc9e09c !important;
+    overflow: hidden;
+}
+
+summary[data-testid="stExpanderSummary"] {
+    font-weight: 500 !important;
+    color: #e2e8f0 !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* =========================================================
+   4. FORMS & INPUTS (แก้ไม่ให้กระทบ st.slider)
+   ========================================================= */
+div[data-testid="stForm"] {
+    border: none !important;
+    padding: 0 !important;
+}
+
+div[data-testid="stWidgetLabel"] label {
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    color: #f8fafc !important;
+    margin-bottom: 4px !important;
+}
+
+/* ล็อกเฉพาะ Text Input / Number Input / Text Area ไม่ให้โดน Slider */
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextArea"] textarea {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    border-radius: 8px !important;
+    border: 1px solid #334155 !important;
+}
+
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stNumberInput"] input:focus,
+div[data-testid="stTextArea"] textarea:focus {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* =========================================================
+   5. BUTTONS (แต่งสีเฉพาะปุ่มผ่าน key - ปลอดภัยไม่กวน Slider)
+   ========================================================= */
+
+/*  ปุ่มสร้าง (สำหรับปุ่มที่ตั้ง key="btn_create_new") */
+.st-key-btn_create_new button {
+    background-color: #f59e0b !important; /* ส้ม */
+    border: 1px solid #d97706 !important;
+    color: #0f0101 !important;
+}
+
+/* 🟢 ปุ่มบันทึก (สำหรับปุ่มที่ตั้ง key="btn_save") */
+.st-key-btn_save button,
+.st-key-btn_save button[kind="primary"] {
+    background-color: #10b981 !important; /* เขียว */
+    border: 1px solid #059669 !important;
+    color: #ffffff !important;
+}
+.st-key-btn_save button:hover {
+    background-color: #059669 !important;
+}
+
+/* 🟡 ปุ่มแก้ไข (สำหรับปุ่มที่ตั้ง key="btn_edit") */
+.st-key-btn_edit button {
+    background-color: #f59e0b !important; /* ส้ม */
+    border: 1px solid #d97706 !important;
+    color: #ffffff !important;
+}
+.st-key-btn_edit button:hover {
+    background-color: #d97706 !important;
+}
+
+/* 🔴 ปุ่มยกเลิก / ลบ (สำหรับปุ่มที่ตั้ง key="btn_cancel" หรือ key="btn_delete") */
+.st-key-btn_cancel button,
+.st-key-btn_delete button {
+    background-color: #ef4444 !important; /* แดง */
+    border: 1px solid #dc2626 !important;
+    color: #ffffff !important;
+}
+.st-key-btn_cancel button:hover,
+.st-key-btn_delete button:hover {
+    background-color: #dc2626 !important;
+}
+
+/* =========================================================
+   6. DATAFRAME / TABLE (ตารางข้อมูล)
+   ========================================================= */
+div[data-testid="stDataFrame"] {
+    border-radius: 10px !important;
+    border: 1px solid #334155 !important;
+    overflow: hidden !important;
+}
+
+/* =========================================================
+   7. UTILITIES & ALERTS (เส้นคั่น & แจ้งเตือน)
+   ========================================================= */
+/* st.divider เส้นคั่น */
+hr {
+    margin: 1.25rem 0 !important;
+    border-top: 1px solid #334155 !important;
+}
+
+/* st.info / st.success / st.error */
+div[data-testid="stNotification"] {
+    border-radius: 10px  #011838 !important;
+    font-size: 0.875rem !important;
+}
